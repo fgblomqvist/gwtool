@@ -43,6 +43,7 @@
             // 
             // Main
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(214, 194);
@@ -51,6 +52,8 @@
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "GWExtract";
+            this.DragEnter += Main_DragEnter;
+            this.DragDrop += Main_DragDrop;
             this.ResumeLayout(false);
             this.PerformLayout();
 
