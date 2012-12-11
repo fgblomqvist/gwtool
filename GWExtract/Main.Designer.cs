@@ -28,12 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(34, 76);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(143, 26);
+            this.lblInfo.TabIndex = 0;
+            this.lblInfo.Text = "Drop an addon file anywhere\r\non this window to extract it";
+            this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(214, 194);
+            this.Controls.Add(this.lblInfo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Main";
+            this.Text = "GWExtract";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblInfo;
     }
 }
 
