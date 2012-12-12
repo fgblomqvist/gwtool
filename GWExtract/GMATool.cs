@@ -17,6 +17,8 @@ namespace GWExtract
             if (i != 0x44414d47)
             {
                 // Invalid GMA file
+                reader.Close();
+                fs.Close();
                 return 1;
             }
 
@@ -47,7 +49,11 @@ namespace GWExtract
 
             // If list is empty, the archive is empty
             if (compressedFiles.Count < 1)
+            {
+                reader.Close();
+                fs.Close();
                 return 2;
+            }
 
             // Create the addons directory
             string addonDir = Path.Combine(outputDir, addonName);
@@ -66,9 +72,10 @@ namespace GWExtract
                 File.WriteAllBytes(Path.Combine(fileDir, fileName), fileContent);
             }
 
+            string infoFilePath = Path.Combine(addonDir, "addon.txt");
+
             //Create the info file
-            File.WriteAllText(Path.Combine(addonDir, "\\addon.txt"), 
-                                "\"AddonInfo\"\r\n{\r\n\t\"name\" \"" + addonName + "\"\r\n\t\"author_name\" \"" + addonAuthor + "\"\r\n\t\"info\" \"" + addonDesc + "\"\r\n}");
+            File.WriteAllText(infoFilePath, "\"AddonInfo\"\r\n{\r\n\t\"name\" \"" + addonName + "\"\r\n\t\"author_name\" \"" + addonAuthor + "\"\r\n\t\"info\" \"" + addonDesc + "\"\r\n}");
 
             reader.Close();
             fs.Close();
