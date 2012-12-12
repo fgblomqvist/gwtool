@@ -49,19 +49,25 @@ namespace GWExtract
             if (compressedFiles.Count < 1)
                 return 2;
 
+            // Create the addons directory
+            string addonDir = Path.Combine(outputDir, addonName);
+            if (!Directory.Exists(addonDir))
+                Directory.CreateDirectory(addonDir);
+
             foreach (object[] file in compressedFiles)
             {
-                byte[] fileContent = reader.ReadBytes((int)file[1]);
-                string fileDir = Path.Combine(outputDir, Path.GetDirectoryName((string)file[0]));
+                byte[] fileContent = reader.ReadBytes(Convert.ToInt32(file[1]));
+                string fileDir = Path.Combine(addonDir, Path.GetDirectoryName((string)file[0]));
+                string fileName = Path.GetFileName((string)file[0]);
 
-                if (!Directory.Exists(outputDir))
-                    Directory.CreateDirectory(outputDir);
+                if (!Directory.Exists(fileDir))
+                    Directory.CreateDirectory(fileDir);
 
-                File.WriteAllBytes(fileDir, fileContent);
+                File.WriteAllBytes(Path.Combine(fileDir, fileName), fileContent);
             }
 
             //Create the info file
-            File.WriteAllText(Path.Combine(outputDir, "\\addon.txt"), 
+            File.WriteAllText(Path.Combine(addonDir, "\\addon.txt"), 
                                 "\"AddonInfo\"\r\n{\r\n\t\"name\" \"" + addonName + "\"\r\n\t\"author_name\" \"" + addonAuthor + "\"\r\n\t\"info\" \"" + addonDesc + "\"\r\n}");
 
             reader.Close();
@@ -70,7 +76,7 @@ namespace GWExtract
             return 0;
         }
 
-        static string ReadString(BinaryReader reader)
+        private static string ReadString(BinaryReader reader)
         {
             string result = string.Empty;
 
