@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GWExtract
+namespace GWTool
 {
     public partial class Main : Form
     {
@@ -34,11 +34,17 @@ namespace GWExtract
 
         private void HandleFile(string file)
         {
+            // TODO: Add support for dropping folders
+
             // Analyze file and find out what type it is
 
             // If raw Steam Workshop file (7z), extract GMA file
 
             // Else if GMA, extract addon folder
+
+            int result = GMADTool.Extract(file, "C:\\");
+
+            MessageBox.Show(result.ToString());
         }
     }
 }

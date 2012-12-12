@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace GWExtract
+namespace GWTool
 {
-    public static class GMATool
+    public static class GMADTool
     {
         public static int Extract(string gmaFile, string outputDir)
         {

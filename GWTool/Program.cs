@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace GWExtract
+namespace GWTool
 {
     static class Program
     {

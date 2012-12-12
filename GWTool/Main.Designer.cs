@@ -1,4 +1,4 @@
-﻿namespace GWExtract
+namespace GWTool
 {
     partial class Main
     {
