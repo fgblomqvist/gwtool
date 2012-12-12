@@ -29,6 +29,7 @@ namespace GWTool
         private void InitializeComponent()
         {
             this.lblInfo = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblInfo
@@ -41,19 +42,27 @@ namespace GWTool
             this.lblInfo.Text = "Drop an addon file anywhere\r\non this window to extract it";
             this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(88, 134);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(0, 13);
+            this.lblResult.TabIndex = 1;
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Main
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(214, 194);
+            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblInfo);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "GWExtract";
-            this.DragEnter += Main_DragEnter;
-            this.DragDrop += Main_DragDrop;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -62,6 +71,7 @@ namespace GWTool
         #endregion
 
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Label lblResult;
     }
 }
 
