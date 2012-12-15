@@ -1,4 +1,4 @@
-using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Forms;
@@ -62,6 +62,7 @@ namespace GWTool
             {
                 case FileType.LZMA:
                     // Extract the GMA file
+                    lblResult.Text = "Please extract this file with 7-zip and drop the extracted file here";
                     break;
 
                 case FileType.GMAD:
@@ -124,7 +125,7 @@ namespace GWTool
 
             switch (hex)
             {
-                case "5D0000":
+                case "5D000000":
                     return FileType.LZMA;
 
                 case "474D4144":

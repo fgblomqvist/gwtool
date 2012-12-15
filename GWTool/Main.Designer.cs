@@ -66,6 +66,8 @@ namespace GWTool
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GWTool";
+            this.DragDrop += Main_DragDrop;
+            this.DragEnter += Main_DragEnter;
             this.ResumeLayout(false);
             this.PerformLayout();
 
