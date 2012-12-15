@@ -100,9 +100,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="7za.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup />

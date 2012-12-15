@@ -82,6 +82,8 @@ namespace GWTool
             this.Text = "GWTool";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.DragEnter += Main_DragEnter;
+            this.DragDrop += Main_DragDrop;
 
         }
 
