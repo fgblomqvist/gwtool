@@ -46,7 +46,7 @@ namespace GWTool
             // 
             this.lblResult.Location = new System.Drawing.Point(12, 140);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(190, 13);
+            this.lblResult.Size = new System.Drawing.Size(190, 45);
             this.lblResult.TabIndex = 1;
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -61,13 +61,13 @@ namespace GWTool
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.DragEnter += Main_DragEnter;
-            this.DragDrop += Main_DragDrop;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GWTool";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.DragEnter += Main_DragEnter;
+            this.DragDrop += Main_DragDrop;
 
         }
 

@@ -36,8 +36,27 @@ namespace GWTool
             // Analyze file and find out what type it is
             FileType type = AnalyzeFile(file);
 
+            if (type == FileType.Uknown)
+            {
+                lblResult.Text = "I don't know what type this file is :(";
+                return;
+            }
+
             lblResult.Text = "The file is a " + type.ToString() + " file!" + "\r\n";
             
+            // Add the extension if it is missing
+            string ext = GetExtension(type);
+
+            FileInfo info = new FileInfo(file);
+            if (info.Extension != ext)
+            {
+                string newFile = file + ext;
+                File.Move(file, newFile);
+                file = newFile;
+
+                lblResult.Text += "Added proper extension to the file";
+            }
+
             // If raw Steam Workshop file (7z), extract GMA file
 
             // Else if GMA, extract addon folder
@@ -45,6 +64,18 @@ namespace GWTool
             //int result = GMADTool.Extract(file, "C:\\");
 
             //MessageBox.Show(result.ToString());
+        }
+
+        private string GetExtension(FileType type)
+        {
+            switch (type)
+            {
+                case FileType.GMAD:
+                    return ".gma";
+
+                default:
+                    return "." + type.ToString().ToLower();
+            }
         }
 
         private enum FileType
