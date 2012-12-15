@@ -67,7 +67,9 @@ namespace GWTool
 
                 case FileType.GMAD:
                     // Extract the addon folder
+                    lblResult.Text = "Extracting GMAD file...";
                     GMADTool.Extract(file, Path.GetDirectoryName(file));
+                    lblResult.Text = "Successfully extracted addon folder!";
                     break;
 
                 default:
@@ -111,8 +113,8 @@ namespace GWTool
 
         private FileType AnalyzeFile(string file)
         {
-            // The format is stored in the first 4 bytes
-            byte[] buffer = new byte[4];
+            // The format is stored in the first 3-4 bytes
+            byte[] buffer = new byte[3];
             string hex;
 
             using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
@@ -125,16 +127,16 @@ namespace GWTool
 
             switch (hex)
             {
-                case "5D000000":
+                case "5D0000":
                     return FileType.LZMA;
 
-                case "474D4144":
+                case "474D41":
                     return FileType.GMAD;
 
-                case "44555033":
+                case "445550":
                     return FileType.DUPE;
 
-                case "474D5333":
+                case "474D53":
                     return FileType.GMS;
 
                 default:
