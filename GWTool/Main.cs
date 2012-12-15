@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows.Forms;
 
 namespace GWTool
@@ -39,14 +35,16 @@ namespace GWTool
 
             // Analyze file and find out what type it is
             FileType type = AnalyzeFile(file);
+
+            lblResult.Text = "The file is a " + type.ToString() + " file!" + "\r\n";
             
             // If raw Steam Workshop file (7z), extract GMA file
 
             // Else if GMA, extract addon folder
 
-            int result = GMADTool.Extract(file, "C:\\");
+            //int result = GMADTool.Extract(file, "C:\\");
 
-            MessageBox.Show(result.ToString());
+            //MessageBox.Show(result.ToString());
         }
 
         private enum FileType
@@ -61,34 +59,41 @@ namespace GWTool
             DUPE,
 
             // 7z Archive
-            LZMA
+            LZMA,
+
+            Uknown
         }
 
         private FileType AnalyzeFile(string file)
         {
             // The format is stored in the first 4 bytes
             byte[] buffer = new byte[4];
-            int format;
+            string hex;
 
             using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
             {
                 fs.Read(buffer, 0, buffer.Length);
-                format = BitConverter.ToInt32(buffer, 0);
+
+                SoapHexBinary shb = new SoapHexBinary(buffer);
+                hex = shb.ToString();
             }
 
-            switch (format)
+            switch (hex)
             {
-                case 0x5D0000:
+                case "5D0000":
                     return FileType.LZMA;
 
-                case 0x474D4144:
+                case "474D4144":
                     return FileType.GMAD;
 
-                case 0x44555033:
+                case "44555033":
                     return FileType.DUPE;
 
-                case 0x474D5333:
+                case "474D5333":
                     return FileType.GMS;
+
+                default:
+                    return FileType.Uknown;
             }
         }
     }
