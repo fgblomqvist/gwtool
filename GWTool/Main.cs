@@ -58,12 +58,22 @@ namespace GWTool
             }
 
             // If raw Steam Workshop file (7z), extract GMA file
+            switch (type)
+            {
+                case FileType.LZMA:
+                    // Extract the GMA file
+                    break;
 
-            // Else if GMA, extract addon folder
+                case FileType.GMAD:
+                    // Extract the addon folder
+                    GMADTool.Extract(file, Path.GetDirectoryName(file));
+                    break;
 
-            //int result = GMADTool.Extract(file, "C:\\");
-
-            //MessageBox.Show(result.ToString());
+                default:
+                    // Nothing more to do with the rest of the types
+                    lblResult.Text += "Now just put this file in the correct directory in GMOD!";
+                    break;
+            }
         }
 
         private string GetExtension(FileType type)
@@ -72,6 +82,9 @@ namespace GWTool
             {
                 case FileType.GMAD:
                     return ".gma";
+
+                case FileType.LZMA:
+                    return ".7z";
 
                 default:
                     return "." + type.ToString().ToLower();
