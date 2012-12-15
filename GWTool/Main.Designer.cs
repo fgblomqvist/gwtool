@@ -28,6 +28,7 @@ namespace GWTool
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.lblInfo = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -59,6 +60,7 @@ namespace GWTool
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
@@ -66,8 +68,6 @@ namespace GWTool
             this.Text = "GWTool";
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.DragEnter += Main_DragEnter;
-            this.DragDrop += Main_DragDrop;
 
         }
 
