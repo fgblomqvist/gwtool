@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace GWTool
 {
@@ -55,7 +56,7 @@ namespace GWTool
             }
 
             // Create the addons directory
-            string addonDir = Path.Combine(outputDir, addonName);
+            string addonDir = Path.Combine(outputDir, ScrubFileName(addonName));
             if (!Directory.Exists(addonDir))
                 Directory.CreateDirectory(addonDir);
 
@@ -97,6 +98,17 @@ namespace GWTool
             }
 
             return result;
+        }
+
+        public static string ScrubFileName(string value)
+        {
+            StringBuilder sb = new StringBuilder(value);
+            char[] invalid = Path.GetInvalidFileNameChars();
+            foreach (char item in invalid)
+            {
+                sb.Replace(item.ToString(), "");
+            }
+            return sb.ToString();
         }
     }
 }

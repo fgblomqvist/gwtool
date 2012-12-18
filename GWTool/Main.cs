@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -68,7 +69,18 @@ namespace GWTool
                 case FileType.GMAD:
                     // Extract the addon folder
                     lblResult.Text = "Extracting GMAD file...";
-                    GMADTool.Extract(file, Path.GetDirectoryName(file));
+
+                    try
+                    {
+                        GMADTool.Extract(file, Path.GetDirectoryName(file));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error!");
+                        lblResult.Text = "Failed to extract addon folder!";
+                        break;
+                    }
+
                     lblResult.Text = "Successfully extracted addon folder!";
                     break;
 
