@@ -10,7 +10,8 @@ namespace GWTool
         public static int Extract(string gmaFile, string outputDir)
         {
             FileStream fs = new FileStream(gmaFile, FileMode.Open);
-            BinaryReader reader = new BinaryReader(fs);
+            // Open with ANSI encoding
+            BinaryReader reader = new BinaryReader(fs, Encoding.GetEncoding(1252));
 
             uint i = reader.ReadUInt32();
 
