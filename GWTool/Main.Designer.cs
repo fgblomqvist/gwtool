@@ -62,7 +62,7 @@ namespace GWTool
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(28, 13);
             this.lblVersion.TabIndex = 2;
-            this.lblVersion.Text = "v0.2";
+            this.lblVersion.Text = "v0.3";
             // 
             // Main
             // 
